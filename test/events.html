@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Events tests for basic-boilerplate</title>
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../basic-boilerplate.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <basic-boilerplate id="bb1"></basic-boilerplate>
+
+  <script>
+  var bb1 = document.querySelector('#bb1');
+
+  suite('events', function() {
+
+    test('change', function(done) {
+
+      // Set up the event listener on the change event
+      bb1.addEventListener('change', function(e) {
+        assert.equal(bb1.value, 'some value');
+        done();
+      });
+
+      // Set the new text and flush the browser
+      bat1.value = 'some value';
+      flush(function() {
+        bb1.dispatchEvent(new CustomEvent('change'));
+      });
+    });
+
+  });
+  </script>
+
+</body>
+</html>

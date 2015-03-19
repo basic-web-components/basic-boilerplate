@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Basic tests for basic-boilerplate</title>
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../basic-boilerplate.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <basic-boilerplate id="bb1"></basic-boilerplate>
+
+  <script>
+  var bb1 = document.querySelector('#bb1');
+
+  suite('basic', function() {
+
+    test('default myAttribute', function(done) {
+      assert.equal(bb1.myAttribute, 'default value');
+      done();
+    });
+
+    test('set myAttribute', function(done) {
+      bb1.myAttribute = 'foo';
+      flush(function() {
+        assert.equal(bb1.myAttribute, 'foo');
+        done();
+      });
+    });
+
+  });
+  </script>
+
+</body>
+</html>
